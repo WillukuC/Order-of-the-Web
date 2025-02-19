@@ -1,37 +1,49 @@
 {
   "name": "client",
-  "version": "0.1.0",
   "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.3",
     "react": "^19.0.0",
+    "react-bootstrap": "^2.10.9",
     "react-dom": "^19.0.0",
-    "next": "15.1.7"
+    "sass": "^1.85.0",
+    "star-rating.js": "^4.3.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@eslint/js": "^9.19.0",
     "@testing-library/react": "^16.2.0",
     "@types/node": "^20",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
     "axios": "^1.7.9",
     "eslint": "^9",
     "eslint-config-next": "15.1.7",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.18",
+    "globals": "^15.14.0",
     "jest": "^27.5.1",
     "postcss": "^8",
     "prettier": "^3.5.1",
-    "tailwindcss": "^3.4.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.1.5",
     "react-scripts": "^5.0.1",
     "redux": "^5.0.1",
-    "styled-components": "^6.1.15"
+    "styled-components": "^6.1.15",
+    "tailwindcss": "^3.4.1",
+    "vite": "^6.1.0"
   }
 }
