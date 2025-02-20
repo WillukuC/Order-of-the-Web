@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 import connectToMongo from './database.js';
 import issueRoutes from './src/issues/issueRoutes.js';
+import userRoutes from './src/users/userRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -17,6 +18,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api/issues', issueRoutes);
+app.use('/api/users', userRoutes)
 
 // Health check
 app.get('/api', (req, res) => {

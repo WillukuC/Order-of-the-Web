@@ -1,7 +1,11 @@
 import User from './UserModel.js';
+import bcrypt from 'bcrypt';
+import validator from 'email-validator'
+
+const saltRounds = 10;
 
 // Get all users
-export const getUsers = async (req, res) => {
+const getUsers = async (req, res) => {
     try {
         const users = await User.find().populate('username');
         res.status(200).json(users);
@@ -10,20 +14,9 @@ export const getUsers = async (req, res) => {
     }
 };
 
-// Get a single user by ID
-export const getUserByID = async (req, res) => {
-    const { id } = req.params;
-    try {
-        const user = await User.findById(id).populate('username');
-        if (!user) return res.status(404).json({ message: 'User not found' });
-        res.status(200).json(user);
-    } catch (error) {
-        res.status(404).json({ message: error.message });
-    }
-};
-
-export const getUserByUsername = async (req, res) => {
-    const { username } = req.params;
+// Get a single user by Username
+const getUser = async (req, res) => {
+    const username = req.params;
     try {
         const user = await User.find(username).populate('username');
         if (!user) return res.status(404).json({ message: 'User not found' });
@@ -34,23 +27,30 @@ export const getUserByUsername = async (req, res) => {
 };
 
 // Create a new user
-export const createUser = async (req, res) => {
+const createUser = async (req, res) => {
     const userData = req.body;
     try {
+        checkPassword(userData.password);
+        if (!validateEmail(userData.email)) {
+            throw new Error('Invalid email address');
+        }
+
+
+        userData.password = hashPassword(userData.password);
         const newUser = new User(userData);
         await newUser.save();
         res.status(201).json(newUser);
     } catch (error) {
-        res.status(409).json({ message: error.message });
+        res.status(400).json({ message: error.message });
     }
 };
 
 // Update an user
-export const updateUser = async (req, res) => {
-    const { id } = req.params;
+const updateUser = async (req, res) => {
+    const username = req.params;
     const userData = req.body;
     try {
-        const updatedUser = await User.findByIdAndUpdate(id, userData, { new: true });
+        const updatedUser = await User.findOneAndUpdate(username, userData, { new: true });
         if (!updatedUser) return res.status(404).json({ message: 'User not found' });
         res.status(200).json(updatedUser);
     } catch (error) {
@@ -59,13 +59,60 @@ export const updateUser = async (req, res) => {
 };
 
 // Delete an user
-export const deleteUser = async (req, res) => {
-    const { id } = req.params;
+const deleteUser = async (req, res) => {
+    const username = req.params;
     try {
-        const deletedUser = await User.findByIdAndDelete(id);
+        const deletedUser = await User.findOneAndDelete(username);
         if (!deletedUser) return res.status(404).json({ message: 'User not found' });
         res.status(200).json({ message: 'User deleted successfully' });
     } catch (error) {
         res.status(409).json({ message: error.message });
     }
 };
+
+function checkPassword(password) {
+    let passwordMessage = []
+    if (password.length < 8) {
+        passwordMessage.push('at least 8 characters');
+    }
+    if (!password.match(/[a-z]/)) {
+        passwordMessage.push('at least one lowercase letter');
+    }
+    if (!password.match(/[A-Z]/)) {
+        passwordMessage.push('at least one uppercase letter');
+    }
+    if (!password.match(/[0-9]/)) {
+        passwordMessage.push('at least one number');
+    }
+    if (!password.match(/[^a-zA-Z0-9]/)) {
+        passwordMessage.push('at least one special character');
+    }
+    if (passwordMessage.length > 1) {
+        throw new Error("Your password must contain: " + passwordMessage.join(', '));
+    }
+}
+
+// Hash password before saving
+function hashPassword(password) {
+    return bcrypt.hashSync(password, saltRounds);
+}
+
+// Compare password with hashed password
+function validatePassword(password, hashedPassword) {
+    return bcrypt.compareSync(password, hashedPassword);
+}
+
+// Validate email before saving
+function validateEmail(email) {
+    return validator.validate(email);
+}
+
+export {
+    getUsers,
+    getUser,
+    createUser,
+    updateUser,
+    deleteUser,
+    hashPassword,
+    validatePassword,
+}

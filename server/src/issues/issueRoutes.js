@@ -11,7 +11,7 @@ const router = express.Router();
 
 // Routes for Issues
 router.get('/', getIssues); // Get all issues
-router.get('/:id', getIssue); // Get a single issue by ID
+router.get('/:volume/#/:issueNumber', getIssue); // Get a specific issue number from a specific volume
 router.post('/', createIssue); // Create a new issue
 router.put('/:id', updateIssue); // Update an issue
 router.delete('/:id', deleteIssue); // Delete an issue
