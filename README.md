@@ -38,11 +38,6 @@
   <p align="center">
     project_description
     <br />
-    <a href="https://github.com/WillukuC/Order-of-the-Web"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/WillukuC/Order-of-the-Web">View Demo</a>
-    &middot;
     <a href="https://github.com/WillukuC/Order-of-the-Web/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     &middot;
     <a href="https://github.com/WillukuC/Order-of-the-Web/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
@@ -82,8 +77,6 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
 Here's a blank template to get started. To avoid retyping too much info, do a search and replace with your text editor for the following: `project_description`
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -101,13 +94,9 @@ Here's a blank template to get started. To avoid retyping too much info, do a se
 
 
 
-<!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [ ] Working website
 
 See the [open issues](https://github.com/WillukuC/Order-of-the-Web/issues) for a full list of proposed features (and known issues).
 
