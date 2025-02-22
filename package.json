@@ -12,6 +12,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "bootstrap": "^5.3.3",
     "concurrently": "^9.1.2"
   },
   "proxy": "http://localhost:8080"
