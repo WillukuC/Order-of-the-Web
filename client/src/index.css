@@ -92,3 +92,13 @@ button:focus-visible {
   /* Support for IE. */
   font-feature-settings: 'liga';
 }
+
+@font-face {
+  font-family: 'avenge';
+  src: url('./assets/AVENGEANCE.ttf');
+}
+
+.avenge-header {
+  font-family: 'avenge';
+  font-size: xx-large !important;
+}
