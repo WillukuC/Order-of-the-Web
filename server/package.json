@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js",
+    "dev": "nodemon --exec npx babel-node src/server.js",
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "jest"
@@ -14,6 +14,10 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@babel/cli": "^7.26.4",
+    "@babel/core": "^7.26.9",
+    "@babel/node": "^7.26.0",
+    "@babel/preset-env": "^7.26.9",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.3",
     "cookie-parser": "^1.4.7",
@@ -27,14 +31,19 @@
     "mongodb": "^6.13.0",
     "mongoose": "^8.10.1",
     "morgan": "^1.10.0",
-    "nodemon": "^3.1.9",
     "passport": "^0.7.0",
+    "path": "^0.12.7",
+    "pg": "^8.13.3",
+    "pg-hstore": "^2.3.4",
     "prettier": "^3.5.1",
+    "sequelize": "^6.37.6",
     "swagger-ui-express": "^5.0.1",
     "zod": "^3.24.2"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
-    "@types/cookie-parser": "^1.4.8"
+    "@types/cookie-parser": "^1.4.8",
+    "nodemon": "^3.1.9",
+    "sequelize-cli": "^6.6.2"
   }
 }
