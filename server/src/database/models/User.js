@@ -8,9 +8,9 @@ module.exports = function(sequelize, DataTypes) {
         username: {
             type: DataTypes.STRING(32),
             allowNull: false,
+            unique: true,
             validate: {
                 notEmpty: true,
-                isUnique: true,
                 is: /^[a-zA-Z0-9]+[a-zA-Z0-9_-]*[a-zA-Z0-9]+$/
             }
         },

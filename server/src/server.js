@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import connectDB from './services/connectDB.js';
 dotenv.config();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 const server = http.createServer(app);
 
