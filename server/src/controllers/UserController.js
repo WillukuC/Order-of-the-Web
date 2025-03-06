@@ -1,5 +1,5 @@
 import db from '../database/models/index.js';
-import { hashPassword, isMatch } from '../services/authentication.js';
+import { hashPassword } from '../services/authentication.js';
 
 // Get all users
 const getUsers = async (req, res) => {
